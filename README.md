@@ -42,7 +42,7 @@ Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.hero
 | 16 | 19-Mar/21-Mar  | Desenvolvendo custom components e Prática com o desenvolvimento de aplicações |  |
 | 17 | 26-Mar/28-Mar  | Prova |  |
 | 18 | 02-Abr/04-Abr  | Entrega e Apresentação dos Projetos |  |
-| 19 | 09-Abr  | Finais; |  |
+| 19 | 09-Abr  | Finais |  |
 
 ## Avaliações
 
