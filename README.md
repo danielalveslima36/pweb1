@@ -24,8 +24,8 @@ Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.hero
 
 | <sub>Semana | <sub>Aulas | <sub>Tópicos                               | <sub>Homeworks       |
 |:-:|:--------:|--------------------------------------|:-----------------:|
-| <sub>01 | <sub>30-Out-01/Nov  | <sub>[Apresentação da Disciplina](slides/00-Apresentacao.pdf); <br> [1.1-Introdução ao desenvolvimento de aplicações Web](slides/01-1-Introducao-apps-web.pdf);<br> [1.2-Padrão MVC](slides/01-2-Padrao-MVC.pdf) | <sub>[HW1](hw/hw1.md) |
-| <sub>02 | <sub>06-Nov/08-Nov  | <sub>JDBC e Padrão DAO |  |
+| <sub>01 | <sub>30-Out-01/Nov  | <sub>- [Apresentação da Disciplina](slides/00-Apresentacao.pdf); <br>- [1.1-Introdução ao desenvolvimento de aplicações Web](slides/01-1-Introducao-apps-web.pdf);<br>- [1.2-Padrão MVC](slides/01-2-Padrao-MVC.pdf) | <sub>[HW1](hw/hw1.md) |
+| <sub>02 | <sub>06-Nov/08-Nov  | <sub>- [2.1 JDBC](slides/02-1-JDBC.pdf)<br>- [2.2 Padrão DAO](slides/02-2-Padrao-DAO.pdf)</sub> |  |
 | <sub>03 | <sub>13-Nov/15-Nov  | <sub>Introdução a Servlets, parâmetros, Filtros e Listeners |  |
 | <sub>04 | <sub>20-Nov/22-Nov  | <sub>Integração com a visão: contexto e dispatchers; Sessão, cookies e escopos |  |
 | <sub>05 | <sub>27-Nov/29-Nov  | <sub>JSP e Expression Language |  |
