@@ -1,8 +1,6 @@
 # Projeto 1
 
 * O objetivo do projeto 1 é desenvolver uma aplicação Web MVC usando como tecnologias Servlets e JSP.
-* O tema do projeto será livre, mas o projeto deverá se enquadrar nos requisitos descritos a seguir.
-* Use a criatividade para pensar no tema, o melhor projeto receberá como prêmio a implantação na nuvem para acesso geral (incluindo custos com domínio e hospedagem)
 
 ## Requisitos Funcionais
 * O sistema pode ser usado apenas por usuários cadastrados, que só devem acessar o sistema mediante autenticação.
@@ -14,30 +12,30 @@
 
 
 ## Grupos
-* Grupo 1 (Tema a definir):
+* Grupo 1 (Tema: Rede social de estudantes e docentes do IFPB):
   - David
   - Ian
   - Leanderson
   - Isleimar
 
-* Grupo 2 (Tema a definir):
+* Grupo 2 (Tema: Plataforma de vídeos online para cursos a distância do IFPB):
   - Raul
   - Lucas
   - Romulo
 
-* Grupo 3 (Tema a definir):
+* Grupo 3 (Tema: Plataforma de Podcasts acadêmicos):
   - Antônio
   - Mailson
   - Camila
   - Eduardo
 
-* Grupo 4 (Tema a definir):
+* Grupo 4 (Tema: Biblioteca de TCCs):
   - Luan
   - Diones
-  - Éricles
+  - Ériclys
   - Caique
 
-* Grupo 5 (Tema a definir):
+* Grupo 5 (Tema: Sistema de fórum de discussões para planejamento acadêmico):
   - José Carlos
   - Alisson
-  - Sara
+  - Glaykiere
