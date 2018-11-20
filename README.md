@@ -25,11 +25,11 @@ Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.hero
 | <sub>Semana | <sub>Aulas | <sub>Tópicos                               | <sub>Homeworks       |
 |:-:|:--------:|--------------------------------------|:-----------------:|
 | <sub>01 | <sub>30-Out-01/Nov  | <sub>- [Apresentação da Disciplina](slides/00-Apresentacao.pdf); <br>- [1.1-Introdução ao desenvolvimento de aplicações Web](slides/01-1-Introducao-apps-web.pdf);<br>- [1.2-Padrão MVC](slides/01-2-Padrao-MVC.pdf) | <sub>[HW1](hw/hw1.md) |
-| <sub>02 | <sub>06-Nov/08-Nov  | <sub>- [2.1 JDBC](slides/02-1-JDBC.pdf)<br>- [2.2 Padrão DAO](slides/02-2-Padrao-DAO.pdf)</sub> |  |
-| <sub>03 | <sub>13-Nov/15-Nov  | <sub>Introdução a Servlets, parâmetros, Filtros e Listeners |  |
-| <sub>04 | <sub>20-Nov/22-Nov  | <sub>Integração com a visão: contexto e dispatchers; Sessão, cookies e escopos |  |
-| <sub>05 | <sub>27-Nov/29-Nov  | <sub>JSP e Expression Language |  |
-| <sub>06 | <sub>04-Dez/06-Dez  | <sub>JSTL e tags customizadas |  |
+| <sub>02 | <sub>06-Nov/08-Nov  | <sub>- [2.1 JDBC](slides/02-1-JDBC.pdf)<br></sub>   | |
+| <sub>03 | <sub>13-Nov/15-Nov  | <sub>- [2.2 Padrão DAO](slides/02-2-Padrao-DAO.pdf) | |
+| <sub>04 | <sub>20-Nov/22-Nov  | <sub>- [3.1 Introdução a Servlets](slides/03-1-Introdução-a-Servlets.pdf)<br> - [3.2 Servlets - Gerenciamento de Aplicações](slides/03-2-Servlets-gerenciamento-aplicacoes.pdf) |  |
+| <sub>05 | <sub>27-Nov/29-Nov  | <sub>- Integração com a visão: contexto e dispatchers; Sessão, cookies e escopos <br> - JSP e Expression Language |  |
+| <sub>06 | <sub>04-Dez/06-Dez  | <sub>JSTL, tags customizadas e filtros |  |
 | <sub>07 | <sub>11-Dez/13-Dez  | <sub>Workshop: oficina prática e desafios | |
 | <sub>08 | <sub>18-Dez/20-Dez  | <sub>Prova | |
 | <sub>09 | <sub>22-Jan/24-Jan  | <sub>Apresentação do Projeto I; Fundamentos de JSF e ciclo de vida | |
