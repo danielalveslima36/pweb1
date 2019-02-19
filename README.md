@@ -22,27 +22,7 @@ Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.hero
 
 ## Conteúdo e Cronograma de aulas
 
-| <sub>Semana | <sub>Aulas | <sub>Tópicos                               | <sub>Homeworks       |
-|:-:|:--------:|--------------------------------------|:-----------------:|
-| <sub>01 | <sub>30-Out-01/Nov  | <sub>- [Apresentação da Disciplina](slides/00-Apresentacao.pdf); <br>- [1.1-Introdução ao desenvolvimento de aplicações Web](slides/01-1-Introducao-apps-web.pdf);<br>- [1.2-Padrão MVC](slides/01-2-Padrao-MVC.pdf) | <sub>[HW1](hw/hw1.md) |
-| <sub>02 | <sub>06-Nov/08-Nov  | <sub>- [2.1 JDBC](slides/02-1-JDBC.pdf)<br>- [2.2 Padrão DAO](slides/02-2-Padrao-DAO.pdf)</sub> |  |
-| <sub>03 | <sub>13-Nov/15-Nov  | <sub>Introdução a Servlets, parâmetros, Filtros e Listeners |  |
-| <sub>04 | <sub>20-Nov/22-Nov  | <sub>Integração com a visão: contexto e dispatchers; Sessão, cookies e escopos |  |
-| <sub>05 | <sub>27-Nov/29-Nov  | <sub>JSP e Expression Language |  |
-| <sub>06 | <sub>04-Dez/06-Dez  | <sub>JSTL e tags customizadas |  |
-| <sub>07 | <sub>11-Dez/13-Dez  | <sub>Workshop: oficina prática e desafios | |
-| <sub>08 | <sub>18-Dez/20-Dez  | <sub>Prova | |
-| <sub>09 | <sub>22-Jan/24-Jan  | <sub>Apresentação do Projeto I; Fundamentos de JSF e ciclo de vida | |
-| <sub>10 | <sub>29-Jan/31-Jan  | <sub>Componentes JSF e facelets (layout, organização, componentes básicos) | |
-| <sub>11 | <sub>05-Fev/07-Fev  | <sub>JSF: Componentes de input e tabelas | |
-| <sub>12 | <sub>12-Fev/14-Fev  | <sub>Internacionalização, validadores e conversores | |
-| <sub>13 | <sub>19-Fev/21-Fev  | <sub>Desenvolvendo um projeto prático - integrando funcionalidades da aplicação | |
-| <sub>14 | <sub>26-Fev/28-Fev  | <sub>Construindo uma aplicação: design issues - problemas conhecidos |  |
-| <sub>15 | <sub>12-Mar/14-Mar  | <sub>Construindo uma aplicação: bibliotecas gráficas, segurança e internacionalização |  |
-| <sub>16 | <sub>19-Mar/21-Mar  | <sub>Desenvolvendo custom components e Prática com o desenvolvimento de aplicações |  |
-| <sub>17 | <sub>26-Mar/28-Mar  | <sub>Prova |  |
-| <sub>18 | <sub>02-Abr/04-Abr  | <sub>Entrega e Apresentação dos Projetos |  |
-| <sub>19 | <sub>09-Abr  | <sub>Finais |  |
+[Acessar Cronograma de Aulas](https://docs.google.com/spreadsheets/d/1Pvnzj62Z6gOwG6BwagHlMOTHit03CTE676NiHeIBYi4/edit?usp=sharing)
 
 
 ## Avaliações
