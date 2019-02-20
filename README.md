@@ -25,6 +25,8 @@ Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.hero
 [Acessar Cronograma de Aulas](https://docs.google.com/spreadsheets/d/1Pvnzj62Z6gOwG6BwagHlMOTHit03CTE676NiHeIBYi4/edit?usp=sharing)
 
 
+[Acessar slides](slides/)
+
 ## Avaliações
 
 A nota final será computado através da média das avaliações:
