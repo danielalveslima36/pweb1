@@ -34,9 +34,21 @@ margin-left: 22%;
 width: 20%;
 padding: 5px;
 } 
+#erro{
+	padding: 5px;
+	color: #f00;
+	background: #d1d1d1;
+	border: 1px solid #c0c0c0;
+}
 </style>
 <body>
 <form method="post" action="login">
+
+	<c:if test="${sessionScope.msgerro != null}">
+		<div id="erro">
+			${sessionScope.msgerro}
+		</div>
+	</c:if>
 	
 	<fieldset>
 		<legend>Credenciais</legend>
