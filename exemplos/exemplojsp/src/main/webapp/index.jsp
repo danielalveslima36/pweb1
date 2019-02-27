@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,9 +36,8 @@
       <!-- Main Content -->
       <div id="content">
 
-		<% if (request.getParameter("topo") != null) { %>
 		<jsp:include page="pages/topo.jsp" />
-		<% } %>
+		
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -341,15 +343,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Deseja realmente sair?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">Ã</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Clique no botão "Sair" abaixo somente se você tem certeza que quer sair.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="./api?comando=UsuariosController&acao=logout">Sair</a>
         </div>
       </div>
     </div>

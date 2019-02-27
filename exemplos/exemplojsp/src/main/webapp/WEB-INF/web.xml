@@ -3,5 +3,26 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>lojapweb1</display-name>
+  <context-param>
+  	<param-name>admnome</param-name>
+  	<param-value>Administrador</param-value>
+  </context-param>
+  
+  
+  <context-param>
+  	<param-name>admlogin</param-name>
+  	<param-value>admin</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>admsenha</param-name>
+  	<param-value>s3cr3ta</param-value>
+  </context-param>
+  
+  <error-page>
+  	<exception-type>br.edu.ifpb.pweb1.controller.CommandException</exception-type>
+  	<location>/erro.jsp</location>
+  </error-page>
+  
 </web-app>
