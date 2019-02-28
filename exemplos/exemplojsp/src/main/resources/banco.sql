@@ -5,4 +5,13 @@ CREATE TABLE usuario (
     senha varchar(64),
     data_cadastro timestamp DEFAULT CURRENT_TIMESTAMP,
     ativo boolean DEFAULT true
-)
+);
+
+CREATE TABLE produto (
+	id serial primary key,
+	nome varchar(50),
+	preco float,
+    data_cadastro timestamp DEFAULT CURRENT_TIMESTAMP,
+    descricao varchar(255),
+    estoque int
+);

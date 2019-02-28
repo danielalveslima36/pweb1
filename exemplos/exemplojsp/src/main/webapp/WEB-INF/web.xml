@@ -20,6 +20,11 @@
   	<param-value>s3cr3ta</param-value>
   </context-param>
   
+  <context-param>
+  	<param-name>nomeapp</param-name>
+  	<param-value>PWEB1 - Exemplo JSP</param-value>
+  </context-param>
+  
   <error-page>
   	<exception-type>br.edu.ifpb.pweb1.controller.CommandException</exception-type>
   	<location>/erro.jsp</location>

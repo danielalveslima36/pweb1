@@ -77,7 +77,7 @@ public abstract class GenericDAO<T extends Entity> {
 				object = entityClass.newInstance();
 				Field idField = entityClass.getSuperclass().getDeclaredField("id");
 				idField.setAccessible(true);
-				idField.set(object, resultSet.getObject("id"));
+				idField.set(object, resultSet.getLong("id"));
 				Field persistedField = entityClass.getSuperclass().getDeclaredField("persisted");
 				persistedField.setAccessible(true);
 				persistedField.set(object, true);
@@ -156,7 +156,7 @@ public abstract class GenericDAO<T extends Entity> {
 					object = entityClass.newInstance();
 					Field idField = entityClass.getSuperclass().getDeclaredField("id");
 					idField.setAccessible(true);
-					idField.set(object, resultSet.getObject("id"));
+					idField.set(object, resultSet.getLong("id"));
 					Field persistedField = entityClass.getSuperclass().getDeclaredField("persisted");
 					persistedField.setAccessible(true);
 					persistedField.set(object, true);
@@ -228,7 +228,6 @@ public abstract class GenericDAO<T extends Entity> {
 			preparedStatement = connection.prepareStatement(sql);
 			List<Field> fieldsWithoutId = persistentFields.stream().filter(f -> !f.getName().equals("id")).collect(Collectors.toList());
 			for (Field persistentField : fieldsWithoutId) {
-				System.out.println(persistentField.getName());
 				if (!persistentField.getName().equals("id")) {
 					preparedStatement.setObject(++position, persistentField.get(entity));
 				}
@@ -315,7 +314,7 @@ public abstract class GenericDAO<T extends Entity> {
 	protected void close(Object... objects) {
 		if (objects != null) {
 			for (Object o : objects) {
-				close(o);
+//				close(o);
 			}
 		}
 	}

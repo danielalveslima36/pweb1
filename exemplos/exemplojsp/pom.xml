@@ -12,7 +12,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -27,23 +27,23 @@
 			<version>1.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>9.4.1212</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1212</version>
 		</dependency>
 	</dependencies>
 	<build>
-	 <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.2</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-          <webappDirectory>webapp</webappDirectory>
-        </configuration>
-      </plugin>
-    </plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<webappDirectory>webapp</webappDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
 		<finalName>exemplojsp</finalName>
 	</build>
 </project>
