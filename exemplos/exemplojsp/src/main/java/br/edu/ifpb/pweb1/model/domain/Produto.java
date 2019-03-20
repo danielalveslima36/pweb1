@@ -17,6 +17,8 @@ public class Produto extends Entity {
 	private Timestamp dataCadastro;
 	
 	private Integer estoque;
+	
+	private Boolean ativo;
 
 	public String getNome() {
 		return nome;
@@ -57,5 +59,15 @@ public class Produto extends Entity {
 	public void setEstoque(Integer estoque) {
 		this.estoque = estoque;
 	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
+	
 	
 }
