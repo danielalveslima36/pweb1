@@ -24,27 +24,8 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <style>
-.order-table{   
-	border-collapse:collapse;
-}
-
-.order-table-header{
-	text-align:center;
-	background:none repeat scroll 0 0 #E5E5E5;
-	border-bottom:1px solid #BBBBBB;
-	padding:16px;
-}
-
-.order-table-odd-row{
-	text-align:center;
-	background:none repeat scroll 0 0 #FFFFFFF;
-	border-top:1px solid #BBBBBB;
-}
-
-.order-table-even-row{
-	text-align:center;
-	background:none repeat scroll 0 0 #F9F9F9;
-	border-top:1px solid #BBBBBB;
+.erro {
+	color: #f00;
 }
 </style>
 </head>
@@ -68,10 +49,20 @@
 
 						<!-- Page Heading -->
 						<div class="d-sm-flex align-items-center row">
-							<h1 class="h3 mb-0 text-gray-800">Produtos</h1>
+							<h1 class="h3 mb-0 text-gray-800">
+								<h:outputText rendered="#{produtosBean.estado == 'cadastro'}"
+									value="Cadastro de Produtos" />
+								<h:outputText rendered="#{produtosBean.estado == 'edicao'}"
+									value="Editar Produtos" />
+								<h:outputText rendered="#{produtosBean.estado == 'listagem'}"
+									value="Lista de Produtos" />
+							</h1>
 						</div>
-					
-						<h:form>
+
+						<!-- ---------- LISTAGEM ----------- -->
+						<h:panelGroup rendered="#{produtosBean.estado eq 'listagem'}">
+							
+							<h:form>
 							<h:commandButton action="#{produtosBean.abrirCadastro}" value="Cadastrar Produto" />
 						</h:form>			
 
@@ -110,11 +101,86 @@
 									<h:commandButton styleClass="btn btn-primary" value="Editar" action="#{produtosBean.prepararEdicao}">
 										<f:setPropertyActionListener value="#{produto}" target="#{produtosBean.produto}"/>
 									</h:commandButton>
+									<h:commandButton onclick="if (!confirm('Deseja realmente remover?')) return false;" styleClass="btn btn-danger" value="Remover" action="#{produtosBean.removerProduto}">
+										<f:setPropertyActionListener value="#{produto}" target="#{produtosBean.produto}"/>
+									</h:commandButton>
 								</div>
 								</h:form>
 							</h:column>
 							
 						</h:dataTable>
+							
+						</h:panelGroup>
+
+
+
+						<!-- ---------- FORMULARIO ----------- -->
+
+						<h:panelGroup
+							rendered="#{produtosBean.estado eq 'edicao' || produtosBean.estado eq 'cadastro'}">
+							<h:form>
+
+								<h:panelGrid columns="2">
+
+									<h:outputLabel for="nome" value="Nome" />
+									<h:panelGroup>
+										<h:inputText required="true"
+											requiredMessage="Nome é obrigatório" id="nome"
+											value="#{produtosBean.produto.nome}" />
+										<h:message styleClass="erro" for="nome" />
+									</h:panelGroup>
+
+									<h:outputLabel for="preco" value="Preço" />
+									<h:panelGroup>
+										<h:inputText id="preco" required="true"
+											requiredMessage="Preço é obrigatório"
+											value="#{produtosBean.produto.preco}">
+											<f:validateDoubleRange minimum="0.0" maximum="1000.00" />
+										</h:inputText>
+										<h:message styleClass="erro" for="preco" />
+									</h:panelGroup>
+									<h:outputLabel for="estoque" value="Quantidade em estoque">
+									</h:outputLabel>
+									<h:panelGroup>
+										<h:inputText id="estoque"
+											value="#{produtosBean.produto.estoque}">
+											<f:validateLongRange minimum="0" maximum="1000"></f:validateLongRange>
+										</h:inputText>
+										<h:message styleClass="erro" for="estoque"></h:message>
+									</h:panelGroup>
+									<h:outputLabel for="descricao" value="Descrição" />
+									<h:inputTextarea id="descricao"
+										value="#{produtosBean.produto.descricao}" />
+
+									<h:outputLabel for="ativo" value="Ativo" />
+									<h:selectBooleanCheckbox id="ativo"
+										value="#{produtosBean.produto.ativo}" />
+
+									<h:outputLabel value="categoria" />
+									<h:selectOneMenu>
+										<f:selectItems value="#{produtosBean.categoriasItens}" />
+									</h:selectOneMenu>
+
+								</h:panelGrid>
+
+								<h:commandButton styleClass="btn-primary btn"
+									rendered="#{produtosBean.estado == 'cadastro'}"
+									value="Cadastrar" action="#{produtosBean.cadastrarProduto}" />
+
+								<h:commandButton styleClass="btn-primary btn"
+									rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
+									action="#{produtosBean.editarProduto}" />
+
+								<h:commandButton immediate="true" action="#{produtosBean.listar}" value="Voltar" />
+
+							</h:form>
+
+						</h:panelGroup>
+
+
+
+
+
 					</div>
 
 					<!-- /.container-fluid -->

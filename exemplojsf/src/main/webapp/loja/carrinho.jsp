@@ -24,8 +24,27 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 <style>
-.erro {
-	color: #f00;
+.order-table{   
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
 }
 </style>
 </head>
@@ -49,66 +68,45 @@
 
 						<!-- Page Heading -->
 						<div class="d-sm-flex align-items-center row">
-							<h1 class="h3 mb-0 text-gray-800">
-							<h:outputText rendered="#{produtosBean.estado == 'cadastro'}" value="Cadastro de Produtos" />
-							<h:outputText rendered="#{produtosBean.estado == 'edicao'}" value="Editar Produtos" />
-							</h1>
+							<h1 class="h3 mb-0 text-gray-800">Produtos no Carrinho da Loja: <h:outputText value="#{configBean.nomeLoja}" /></h1>
 						</div>
-
-						<h:form>
-
-							<h:panelGrid columns="2">
-
-								<h:outputLabel for="nome" value="Nome" />
-								<h:panelGroup>
-									<h:inputText required="true"
-										requiredMessage="Nome é obrigatório" id="nome"
-										value="#{produtosBean.produto.nome}" />
-									<h:message styleClass="erro" for="nome" />
-								</h:panelGroup>
-
-								<h:outputLabel for="preco" value="Preço" />
-								<h:panelGroup>
-									<h:inputText id="preco" required="true"
-										requiredMessage="Preço é obrigatório"
-										value="#{produtosBean.produto.preco}">
-										<f:validateDoubleRange minimum="0.0" maximum="1000.00" />
-									</h:inputText>
-									<h:message styleClass="erro" for="preco" />
-								</h:panelGroup>
-								<h:outputLabel for="estoque" value="Quantidade em estoque">
-								</h:outputLabel>
-								<h:panelGroup>
-									<h:inputText id="estoque"
-										value="#{produtosBean.produto.estoque}">
-										<f:validateLongRange minimum="0" maximum="1000"></f:validateLongRange>
-									</h:inputText>
-									<h:message styleClass="erro" for="estoque"></h:message>
-								</h:panelGroup>
-								<h:outputLabel for="descricao" value="Descrição" />
-								<h:inputTextarea id="descricao"
-									value="#{produtosBean.produto.descricao}" />
-									
-								<h:outputLabel for="ativo" value="Ativo" />
-								<h:selectBooleanCheckbox id="ativo" value="#{produtosBean.produto.ativo}"  />
-
-								<h:outputLabel value="categoria" />
-								<h:selectOneMenu>
-									<f:selectItems value="#{produtosBean.categoriasItens}"/>
-								</h:selectOneMenu>
-
-							</h:panelGrid>
-
-							<h:commandButton styleClass="btn-primary btn" rendered="#{produtosBean.estado == 'cadastro'}" value="Cadastrar"
-								action="#{produtosBean.cadastrarProduto}" />
+					
+						<h:dataTable var="produto" value="#{carrinhoBean.produtos}"
+							styleClass="order-table" headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row">
+							<h:column>
+								<f:facet name="header"><h:outputText value="Nome" /></f:facet>
+								
+								<h:outputText value="#{produto.nome}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="Preço" /></f:facet>
+								<h:outputText value="#{produto.preco}">
+									<f:convertNumber currencySymbol="R$ " locale="pt" maxFractionDigits="2" type="currency" />
+								</h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="Data de Cadastro"/></f:facet>
+								<h:outputText value="#{produto.dataCadastro}">
+									<f:convertDateTime pattern="dd/MM/YYYY HH:mm:ss" />
+								</h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="Quantidade em Estoque" /></f:facet>
+								<h:outputText value="#{produto.estoque}">
+									<f:convertNumber integerOnly="true" />
+								</h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header"><h:outputText value="Remover" /></f:facet>
+								<h:form>
+									<h:commandLink value="remover" action="#{carrinhoBean.removerProduto}">
+										<f:setPropertyActionListener value="#{produto}" target="#{carrinhoBean.produtoSelecionado}"/>
+									</h:commandLink>
+								</h:form>
+							</h:column>
 							
-							<h:commandButton styleClass="btn-primary btn" rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
-								action="#{produtosBean.editarProduto}" />
-							
-							<h:commandButton immediate="true" action="inicio" value="Voltar" />
-
-						</h:form>
-
+						</h:dataTable>
 					</div>
 
 					<!-- /.container-fluid -->
