@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="login-layout.xhtml">
+
+	<ui:define name="formLogin">
+		<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+		<div class="col-lg-6">
+			<div class="p-5">
+				<div class="text-center">
+					<h1 class="h4 text-gray-900 mb-4">Loja PWEB - Login</h1>
+				</div>
+				<h:form>
+					<div class="row">
+						<h:messages style="background: #ff4422; color: #fff; padding: 5px; margin: 5px;" globalOnly="true"></h:messages>
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Login" />
+						<h:inputText id="login" required="true" value="#{loginBean.login}"
+							requiredMessage="Login obrigatório"
+							styleClass="form-control form-control-user" />
+						<h:message for="login" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Senha" />
+						<h:inputSecret id="senha" required="true" value="#{loginBean.senha}"
+							requiredMessage="Senha obrigatória"
+							styleClass="form-control form-control-user" />
+						<h:message for="senha" />
+					</div>
+
+					<h:commandButton styleClass="btn btn-primary btn-user btn-block"
+						action="#{loginBean.efetuarLogin}" value="Login" />
+				</h:form>
+				<hr />
+				<div class="text-center">
+					<a class="small" href="forgot-password.html">Esqueceu a senha?</a>
+				</div>
+				<div class="text-center">
+					<a class="small" href="cadastro.jsp">Criar conta</a>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

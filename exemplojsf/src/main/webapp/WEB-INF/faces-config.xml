@@ -11,19 +11,12 @@
 	</managed-bean> -->
 	
 	<navigation-rule>
-		<from-view-id>/loja/criarProdutos.jsp</from-view-id>
+		<from-view-id>/loja/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>inicio</from-outcome>
-			<to-view-id>/loja/index.jsp</to-view-id>
+			<from-outcome>produtos</from-outcome>
+			<to-view-id>/loja/produtos.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-	<navigation-rule>
-		<from-view-id>/loja/index.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>cadastro</from-outcome>
-			<to-view-id>/loja/criarProdutos.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+
 	
 </faces-config>

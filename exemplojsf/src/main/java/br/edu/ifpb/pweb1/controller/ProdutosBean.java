@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
+import javax.faces.bean.ViewScoped;
 
 import br.edu.ifpb.pweb1.model.dao.ProdutosDAO;
 import br.edu.ifpb.pweb1.model.domain.Categoria;

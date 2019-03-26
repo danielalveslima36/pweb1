@@ -138,7 +138,7 @@ public abstract class GenericDAO<T extends Entity> {
 		} finally {
 			close(resultSet, preparedStatement, connection);
 		}
-		return Optional.of((T) object);
+		return Optional.ofNullable((T) object);
 	}
 
 	public Optional<T> findById(Long id) {

@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition template="main-layout.xhtml">
+
+		<ui:define name="listagem">
+
+			<h:form>
+				<h:commandButton action="#{produtosBean.abrirCadastro}"
+					value="Cadastrar Produto" />
+			</h:form>
+
+			<h:dataTable var="produto" value="#{produtosBean.produtos}"
+				styleClass="order-table" headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+
+					<h:outputText value="#{produto.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Preço" />
+					</f:facet>
+					<h:outputText value="#{produto.preco}">
+						<f:convertNumber currencySymbol="R$ " locale="pt"
+							maxFractionDigits="2" type="currency" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Data de Cadastro" />
+					</f:facet>
+					<h:outputText value="#{produto.dataCadastro}">
+						<f:convertDateTime pattern="dd/MM/YYYY HH:mm:ss" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Quantidade em Estoque" />
+					</f:facet>
+					<h:outputText value="#{produto.estoque}">
+						<f:convertNumber integerOnly="true" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<h:form>
+						<div class="btn-group">
+							<h:commandButton styleClass="btn btn-primary"
+								value="Adicionar ao carrinho"
+								action="#{carrinhoBean.adicionarProduto}">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{carrinhoBean.produtoSelecionado}" />
+							</h:commandButton>
+							<h:commandButton styleClass="btn btn-primary" value="Editar"
+								action="#{produtosBean.prepararEdicao}">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtosBean.produto}" />
+							</h:commandButton>
+							<h:commandButton
+								onclick="if (!confirm('Deseja realmente remover?')) return false;"
+								styleClass="btn btn-danger" value="Remover"
+								action="#{produtosBean.removerProduto}">
+								<f:setPropertyActionListener value="#{produto}"
+									target="#{produtosBean.produto}" />
+							</h:commandButton>
+						</div>
+					</h:form>
+				</h:column>
+
+			</h:dataTable>
+		</ui:define>
+
+		<ui:define name="formulario">
+			<h:form>
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel for="nome" value="Nome" />
+					<h:panelGroup>
+						<h:inputText required="true" requiredMessage="Nome é obrigatário"
+							id="nome" value="#{produtosBean.produto.nome}" />
+						<h:message styleClass="erro" for="nome" />
+					</h:panelGroup>
+
+					<h:outputLabel for="preco" value="Preço" />
+					<h:panelGroup>
+						<h:inputText id="preco" required="true"
+							requiredMessage="Preço é obrigatório"
+							value="#{produtosBean.produto.preco}">
+							<f:validateDoubleRange minimum="0.0" maximum="1000.00" />
+						</h:inputText>
+						<h:message styleClass="erro" for="preco" />
+					</h:panelGroup>
+					<h:outputLabel for="estoque" value="Quantidade em estoque">
+					</h:outputLabel>
+					<h:panelGroup>
+						<h:inputText id="estoque" value="#{produtosBean.produto.estoque}">
+							<f:validateLongRange minimum="0" maximum="1000"></f:validateLongRange>
+						</h:inputText>
+						<h:message styleClass="erro" for="estoque"></h:message>
+					</h:panelGroup>
+					<h:outputLabel for="descricao" value="Descrição" />
+					<h:inputTextarea id="descricao"
+						value="#{produtosBean.produto.descricao}" />
+
+					<h:outputLabel for="ativo" value="Ativo" />
+					<h:selectBooleanCheckbox id="ativo"
+						value="#{produtosBean.produto.ativo}" />
+
+					<h:outputLabel value="categoria" />
+					<h:selectOneMenu>
+						<f:selectItems value="#{produtosBean.categoriasItens}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+
+				<h:commandButton styleClass="btn-primary btn"
+					rendered="#{produtosBean.estado == 'cadastro'}" value="Cadastrar"
+					action="#{produtosBean.cadastrarProduto}" />
+
+				<h:commandButton styleClass="btn-primary btn"
+					rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
+					action="#{produtosBean.editarProduto}" />
+
+				<h:commandButton immediate="true" action="#{produtosBean.listar}"
+					value="Voltar" />
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>
