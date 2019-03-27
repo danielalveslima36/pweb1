@@ -19,6 +19,8 @@ public class Produto extends Entity {
 	private Integer estoque;
 	
 	private Boolean ativo;
+	
+	private String imagem;
 
 	public String getNome() {
 		return nome;
@@ -66,6 +68,14 @@ public class Produto extends Entity {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 	
 }

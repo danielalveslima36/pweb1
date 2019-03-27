@@ -28,6 +28,13 @@
 <body class="bg-gradient-primary">
 
 	<div class="container">
+	
+		<h:form>
+			<h:selectOneMenu valueChangeListener="#{idiomaBean.mudarIdioma}" onchange="submit()" value="#{idiomaBean.idioma}">
+				<f:selectItem itemLabel="Inglês" itemValue="en" />
+				<f:selectItem itemLabel="Português" itemValue="pt" />
+			</h:selectOneMenu>
+		</h:form>
 
 		<!-- Outer Row -->
 		<div class="row justify-content-center">

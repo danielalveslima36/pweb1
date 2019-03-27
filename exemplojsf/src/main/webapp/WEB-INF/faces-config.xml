@@ -15,8 +15,32 @@
 		<navigation-case>
 			<from-outcome>produtos</from-outcome>
 			<to-view-id>/loja/produtos.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>goLogin</from-outcome>
+			<to-view-id>/loja/login.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	
+	<lifecycle>
+		<phase-listener>br.edu.ifpb.pweb1.listener.AuthListener</phase-listener>	
+	</lifecycle>
+	
+	<application>
+     	   <locale-config>
+     	        <default-locale>pt</default-locale>
+     	   </locale-config>
+	   <resource-bundle>
+		<base-name>messages.mensagens</base-name>
+		<var>msg</var>
+	   </resource-bundle>
+     </application>
 	
 </faces-config>

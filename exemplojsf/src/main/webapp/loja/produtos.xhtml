@@ -17,6 +17,14 @@
 				rowClasses="order-table-odd-row,order-table-even-row">
 				<h:column>
 					<f:facet name="header">
+						<h:outputText value="Imagem" />
+					</f:facet>
+					
+					<h:graphicImage height="50" url="/imagem?idProduto=#{produto.id}" />
+					
+				</h:column>
+				<h:column>
+					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
 
@@ -73,10 +81,18 @@
 				</h:column>
 
 			</h:dataTable>
+			
+			<h2>Resumo dos produtos</h2>
+			<ul>
+				<ui:repeat var="produto" value="#{produtosBean.produtos}">
+					<li><h:outputText value="#{produto.nome}" /></li>
+				</ui:repeat>
+			</ul>
+			
 		</ui:define>
 
 		<ui:define name="formulario">
-			<h:form>
+			<h:form enctype="multipart/form-data">
 
 				<h:panelGrid columns="2">
 
@@ -111,11 +127,19 @@
 					<h:outputLabel for="ativo" value="Ativo" />
 					<h:selectBooleanCheckbox id="ativo"
 						value="#{produtosBean.produto.ativo}" />
+						
+					<h:outputLabel value="Data de cadastro" />
+					<h:inputText required="true" requiredMessage="Data de cadastro obrigatória" value="#{produtosBean.produto.dataCadastro}">
+						<f:converter converterId="dateConverter" />
+					</h:inputText>
 
 					<h:outputLabel value="categoria" />
 					<h:selectOneMenu>
 						<f:selectItems value="#{produtosBean.categoriasItens}" />
 					</h:selectOneMenu>
+					
+					<h:outputLabel value="Imagem" />
+					<h:inputFile value="#{produtosBean.imagem}" />
 
 				</h:panelGrid>
 

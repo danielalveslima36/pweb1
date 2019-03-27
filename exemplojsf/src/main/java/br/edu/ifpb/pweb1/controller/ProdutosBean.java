@@ -1,5 +1,10 @@
 package br.edu.ifpb.pweb1.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -8,8 +13,9 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.SelectItem;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
 
 import br.edu.ifpb.pweb1.model.dao.ProdutosDAO;
 import br.edu.ifpb.pweb1.model.domain.Categoria;
@@ -18,6 +24,8 @@ import br.edu.ifpb.pweb1.model.domain.Produto;
 @ManagedBean
 @ViewScoped
 public class ProdutosBean {
+	
+	private String imgSource = "/Users/diegopessoa/imagens";
 
 	private List<Produto> produtos;
 	
@@ -37,6 +45,8 @@ public class ProdutosBean {
 	
 	public ProdutosBean() {}
 	
+	private Part imagem;
+	
 	@PostConstruct
 	public void init() {
 		this.produtosDAO = new ProdutosDAO();
@@ -52,6 +62,7 @@ public class ProdutosBean {
 	
 	public void listar() {
 		this.estado = "listagem";
+		resetar();
 		this.produtos = produtosDAO.findAll();
 	}
 	
@@ -59,9 +70,21 @@ public class ProdutosBean {
 		this.estado = "cadastro";
 	}
 	
+	public void resetar() {
+		this.produto = new Produto();
+	}
+	
 	public String cadastrarProduto() {
 		produto.setDataCadastro(Timestamp.from(Instant.now()));
+		String arquivo = Timestamp.from(Instant.now()).toString() + "-" + imagem.getSubmittedFileName();
+		try (InputStream file = imagem.getInputStream()) {
+			Files.copy(file, new File(imgSource + "/" + arquivo).toPath(), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		produto.setImagem(arquivo);
 		produtosDAO.save(produto);
+		resetar();
 		listar();
 		return "inicio";
 	}
@@ -72,10 +95,17 @@ public class ProdutosBean {
 	
 	public void editarProduto() {
 		produtosDAO.update(produto);
+		resetar();
 		listar();
 	}
 	
 	public void removerProduto() {
+		
+		File imagem = new File(imgSource + "/" + produto.getImagem());
+		if (imagem.exists()) {
+			imagem.delete();
+		}
+		
 		produtosDAO.delete(produto);
 		listar();
 	}
@@ -131,8 +161,14 @@ public class ProdutosBean {
 		this.estado = estado;
 	}
 
-	
-	
+	public Part getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(Part imagem) {
+		this.imagem = imagem;
+	}
+
 //	public List<Produto> getListaProdutos() {
 //		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 //		listaProdutos = (List) request.getSession(true).getAttribute("carrinho");

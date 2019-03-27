@@ -1,12 +1,17 @@
 package br.edu.ifpb.pweb1.controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ResourceHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifpb.pweb1.model.dao.UsuariosDAO;
 import br.edu.ifpb.pweb1.model.domain.Usuario;
@@ -23,6 +28,8 @@ public class LoginBean {
 	
 	private Usuario usuarioLogado;
 	
+//	private UIInput inputLogin;
+	
 	@PostConstruct
 	public void init() {
 		usuariosDAO = new UsuariosDAO();
@@ -31,6 +38,11 @@ public class LoginBean {
 	public String efetuarLogin() throws Exception {
 		
 		Optional<Usuario> usuario = usuariosDAO.findByLogin(login);
+		
+//		if (login.length() > 10) {
+//			FacesContext.getCurrentInstance().addMessage(inputLogin.getClientId(), new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login excede o número de caracters permitido", "Login excede o número de caracters permitido"));
+//			return "";
+//		}
 		
 		if (!usuario.isPresent() || !usuario.get().getSenha().equals(senha)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos", "Login ou senha inválidos"));
@@ -44,6 +56,12 @@ public class LoginBean {
 		usuariosDAO = null;
 		
 		return "produtos";
+	}
+	
+	public String logout() {
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		request.getSession(false).invalidate();
+		return "goLogin";
 	}
 
 	public String getLogin() {
@@ -69,5 +87,15 @@ public class LoginBean {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
+
+//	public UIInput getInputLogin() {
+//		return inputLogin;
+//	}
+//
+//	public void setInputLogin(UIInput inputLogin) {
+//		this.inputLogin = inputLogin;
+//	}
+	
+	
 	
 }
