@@ -13,26 +13,26 @@
 					value="Cadastrar Produto" />
 			</h:form>
 
-			<h:dataTable var="produto" id="produtos"
+			<p:dataTable var="produto" id="produtos"
 				value="#{produtosBean.produtos}" styleClass="order-table"
 				headerClass="order-table-header"
 				rowClasses="order-table-odd-row,order-table-even-row">
-				<h:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Imagem" />
 					</f:facet>
 
 					<h:graphicImage height="50" url="/imagem?idProduto=#{produto.id}" />
 
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Nome" />
 					</f:facet>
 
 					<h:outputText value="#{produto.nome}" />
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Preço" />
 					</f:facet>
@@ -40,39 +40,40 @@
 						<f:convertNumber currencySymbol="R$ " locale="pt"
 							maxFractionDigits="2" type="currency" />
 					</h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Data de Cadastro" />
 					</f:facet>
 					<h:outputText value="#{produto.dataCadastro}">
 						<f:convertDateTime pattern="dd/MM/YYYY HH:mm:ss" />
 					</h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Quantidade em Estoque" />
 					</f:facet>
 					<h:outputText value="#{produto.estoque}">
 						<f:convertNumber integerOnly="true" />
 					</h:outputText>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<h:form id="form" prependId="false">
-						<div class="btn-group">
-							<h:link styleClass="btn btn-primary"
-								outcome="produtos?id=#{produto.id}">Detalhes</h:link>
-							<h:commandButton styleClass="btn btn-primary"
+							<p:toolbar>
+								<f:facet name="right">
+							<p:button includeViewParams="false" value="Detalhes"
+								outcome="produtos?id=#{produto.id}" />
+							<p:commandButton
 								value="Adicionar ao carrinho"
-								action="#{carrinhoBean.adicionarProduto}">
+								action="#{carrinhoBean.adicionarProduto}" ajax="false">
 								<f:setPropertyActionListener value="#{produto}"
 									target="#{carrinhoBean.produtoSelecionado}" />
-							</h:commandButton>
-							<h:commandButton styleClass="btn btn-primary" value="Editar"
+							</p:commandButton>
+							<p:commandButton value="Editar" update="body"
 								action="#{produtosBean.prepararEdicao}">
 								<f:setPropertyActionListener value="#{produto}"
 									target="#{produtosBean.produto}" />
-							</h:commandButton>
+							</p:commandButton>
 							<p:commandButton value="Remover"
 								action="#{produtosBean.removerProduto}">
 								<p:confirm header="Confirmação"
@@ -88,13 +89,14 @@
 								<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
 									icon="ui-icon-close" update="body" />
 							</p:confirmDialog>
-						</div>
+							</f:facet>
+							</p:toolbar>
+						
 					</h:form>
 
+				</p:column>
 
-				</h:column>
-
-			</h:dataTable>
+			</p:dataTable>
 
 		</p:outputPanel>
 
