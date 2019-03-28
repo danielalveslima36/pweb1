@@ -8,6 +8,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>exemplojsf Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<repositories>
+		<repository>
+			<id>mvn-repository</id>
+			<url>http://mvnrepository.com/</url>
+		</repository>
+		<repository>
+			<id>primefaces-themes</id>
+			<url>http://repository.primefaces.org/</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -46,6 +57,18 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4.1212</version>
 		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.2</version>
+		</dependency>
+		<!-- PRIMEFACES ALL THEMES -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
@@ -58,15 +81,15 @@
 					<webappDirectory>webapp</webappDirectory>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+		</plugins>
 		<finalName>exemplojsf</finalName>
 	</build>
 </project>

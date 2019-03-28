@@ -1,6 +1,8 @@
 package br.edu.ifpb.pweb1.model.domain;
 
-public class Categoria {
+import java.io.Serializable;
+
+public class Categoria implements Serializable {
 	
 	private String id;
 	private String nome;

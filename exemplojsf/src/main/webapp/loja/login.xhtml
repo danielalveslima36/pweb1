@@ -1,11 +1,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="login-layout.xhtml">
 
 	<ui:define name="formLogin">
+
+		
+<!-- 		<p>O nome é <h:outputText value="#{loginBean.nome}" /></p>
+ -->
 		<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 		<div class="col-lg-6">
 			<div class="p-5">
@@ -18,23 +23,32 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="#{msg['login.login']}" />
-						<h:inputText id="login" required="true" value="#{loginBean.login}"
+						<p:inputText id="login" required="true" value="#{loginBean.login}"
 							requiredMessage="Login obrigatório"
 							styleClass="form-control form-control-user">
 							<f:validator validatorId="loginValidator" />
-							</h:inputText>
-						<h:message for="login" />
+							</p:inputText>
+						<p:message for="login" />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="#{msg['login.senha']}" />
-						<h:inputSecret id="senha" required="true" value="#{loginBean.senha}"
+						<p:password id="senha" required="true" value="#{loginBean.senha}"
 							requiredMessage="Senha obrigatória"
 							styleClass="form-control form-control-user" />
-						<h:message for="senha" />
+						<p:message for="senha" />
 					</div>
-
-					<h:commandButton styleClass="btn btn-primary btn-user btn-block"
-						action="#{loginBean.efetuarLogin}" value="#{msg['login.entrar']}" />
+					<!-- <div class="form-group">
+						<div class="custom-control custom-checkbox small">
+							<h:selectBooleanCheckbox id="lembrar" styleClass="custom-control-input">
+							</h:selectBooleanCheckbox>
+							<h:outputLabel for="lembrar" styleClass="custom-control-label" value="lembrar" />
+						</div>
+					</div> -->
+					<p:commandButton update="formLogin"
+					 actionListener="#{loginBean.verificarTipo}"	action="#{loginBean.efetuarLogin}" value="#{msg['login.entrar']}">
+						<f:attribute name="tipoForm" value="login"></f:attribute>
+					</p:commandButton>
+							
 				</h:form>
 				<hr />
 				<div class="text-center">

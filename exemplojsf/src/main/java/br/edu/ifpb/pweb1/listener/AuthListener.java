@@ -19,7 +19,7 @@ public class AuthListener implements PhaseListener {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
 		
-		if (request.getSession(false) == null) {
+		if (request.getSession() == null) {
 			event.getFacesContext().getApplication().getNavigationHandler().handleNavigation(context, null, "goLogin");
 		}
 

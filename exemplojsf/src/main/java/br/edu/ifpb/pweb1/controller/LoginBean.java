@@ -1,17 +1,14 @@
 package br.edu.ifpb.pweb1.controller;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.ResourceHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import br.edu.ifpb.pweb1.model.dao.UsuariosDAO;
 import br.edu.ifpb.pweb1.model.domain.Usuario;
@@ -21,6 +18,8 @@ import br.edu.ifpb.pweb1.model.domain.Usuario;
 public class LoginBean {
 
 	private UsuariosDAO usuariosDAO;
+	
+	private String nome;
 	
 	private String login;
 	
@@ -35,7 +34,14 @@ public class LoginBean {
 		usuariosDAO = new UsuariosDAO();
 	}
 	
+	public void verificarTipo(ActionEvent event) {
+		String tipoForm = (String) event.getComponent().getAttributes().get("tipoForm");
+		System.out.println("TIPO FORM = "+ tipoForm);
+	}
+	
 	public String efetuarLogin() throws Exception {
+		
+//		boolean lembrar = Boolean.parseBoolean(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("lembrar"));
 		
 		Optional<Usuario> usuario = usuariosDAO.findByLogin(login);
 		
@@ -88,6 +94,14 @@ public class LoginBean {
 		this.usuarioLogado = usuarioLogado;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 //	public UIInput getInputLogin() {
 //		return inputLogin;
 //	}
@@ -95,6 +109,7 @@ public class LoginBean {
 //	public void setInputLogin(UIInput inputLogin) {
 //		this.inputLogin = inputLogin;
 //	}
+	
 	
 	
 	

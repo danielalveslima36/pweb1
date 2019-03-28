@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb1.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.Timestamp;
@@ -13,7 +14,10 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 
@@ -23,7 +27,7 @@ import br.edu.ifpb.pweb1.model.domain.Produto;
 
 @ManagedBean
 @ViewScoped
-public class ProdutosBean {
+public class ProdutosBean implements Serializable {
 	
 	private String imgSource = "/Users/diegopessoa/imagens";
 
@@ -38,6 +42,9 @@ public class ProdutosBean {
 	private ProdutosDAO produtosDAO;
 	
 	private String estado;
+	
+	@ManagedProperty("#{loginBean}")
+	private LoginBean loginBean;
 	
 //	private List<Produto> listaProdutos;
 //	
@@ -57,7 +64,13 @@ public class ProdutosBean {
 		this.categorias.add(new Categoria("cel", "Celulares"));
 		this.categoriasItens = categorias.stream().map( cat -> new SelectItem(cat.getId(), cat.getNome()) ).collect(Collectors.toList());
 //		this.listaProdutos = new ArrayList();
-		listar();
+		String idProduto = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		if (idProduto != null && !idProduto.isEmpty()) {
+			this.estado = "detalhes";
+			produto = produtosDAO.findById(Long.parseLong(idProduto)).get();
+		} else {
+			listar();
+		}
 	}
 	
 	public void listar() {
@@ -82,11 +95,12 @@ public class ProdutosBean {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		produto.setUsuario(loginBean.getUsuarioLogado().getLogin());
 		produto.setImagem(arquivo);
 		produtosDAO.save(produto);
 		resetar();
 		listar();
-		return "inicio";
+		return "produtos";
 	}
 	
 	public void prepararEdicao() {
@@ -169,6 +183,14 @@ public class ProdutosBean {
 		this.imagem = imagem;
 	}
 
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+
 //	public List<Produto> getListaProdutos() {
 //		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 //		listaProdutos = (List) request.getSession(true).getAttribute("carrinho");
@@ -189,6 +211,7 @@ public class ProdutosBean {
 //	public void setProdutoSelecionado(Produto produtoSelecionado) {
 //		this.produtoSelecionado = produtoSelecionado;
 //	}
+	
 	
 	
 	

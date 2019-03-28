@@ -1,27 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<body>
-	<ui:composition template="main-layout.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="main-layout.xhtml">
 
-		<ui:define name="listagem">
+	<ui:define name="listagem">
 
+		<p:outputPanel autoUpdate="true">
 			<h:form>
 				<h:commandButton action="#{produtosBean.abrirCadastro}"
 					value="Cadastrar Produto" />
 			</h:form>
 
-			<h:dataTable var="produto" value="#{produtosBean.produtos}"
-				styleClass="order-table" headerClass="order-table-header"
+			<h:dataTable var="produto" id="produtos"
+				value="#{produtosBean.produtos}" styleClass="order-table"
+				headerClass="order-table-header"
 				rowClasses="order-table-odd-row,order-table-even-row">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Imagem" />
 					</f:facet>
-					
+
 					<h:graphicImage height="50" url="/imagem?idProduto=#{produto.id}" />
-					
+
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -56,8 +58,10 @@
 					</h:outputText>
 				</h:column>
 				<h:column>
-					<h:form>
+					<h:form id="form" prependId="false">
 						<div class="btn-group">
+							<h:link styleClass="btn btn-primary"
+								outcome="produtos?id=#{produto.id}">Detalhes</h:link>
 							<h:commandButton styleClass="btn btn-primary"
 								value="Adicionar ao carrinho"
 								action="#{carrinhoBean.adicionarProduto}">
@@ -69,94 +73,149 @@
 								<f:setPropertyActionListener value="#{produto}"
 									target="#{produtosBean.produto}" />
 							</h:commandButton>
-							<h:commandButton
-								onclick="if (!confirm('Deseja realmente remover?')) return false;"
-								styleClass="btn btn-danger" value="Remover"
+							<p:commandButton value="Remover"
 								action="#{produtosBean.removerProduto}">
+								<p:confirm header="Confirmação"
+									message="Tem certeza que deseja remover?" icon="ui-icon-alert" />
 								<f:setPropertyActionListener value="#{produto}"
 									target="#{produtosBean.produto}" />
-							</h:commandButton>
+							</p:commandButton>
+							<p:confirmDialog closeOnEscape="true" appendTo="@(body)"
+								global="true" showEffect="fade" hideEffect="fade">
+								<p:commandButton value="Sim" update="produtos body"
+									styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+								</p:commandButton>
+								<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+									icon="ui-icon-close" update="body" />
+							</p:confirmDialog>
 						</div>
 					</h:form>
+
+
 				</h:column>
 
 			</h:dataTable>
-			
-			<h2>Resumo dos produtos</h2>
-			<ul>
-				<ui:repeat var="produto" value="#{produtosBean.produtos}">
-					<li><h:outputText value="#{produto.nome}" /></li>
-				</ui:repeat>
-			</ul>
-			
-		</ui:define>
 
-		<ui:define name="formulario">
-			<h:form enctype="multipart/form-data">
+		</p:outputPanel>
 
-				<h:panelGrid columns="2">
+		<h2>Resumo dos produtos</h2>
+		<ul>
+			<ui:repeat var="produto" value="#{produtosBean.produtos}">
+				<li><h:outputText value="#{produto.nome}" /></li>
+			</ui:repeat>
+		</ul>
 
-					<h:outputLabel for="nome" value="Nome" />
-					<h:panelGroup>
-						<h:inputText required="true" requiredMessage="Nome é obrigatário"
-							id="nome" value="#{produtosBean.produto.nome}" />
-						<h:message styleClass="erro" for="nome" />
-					</h:panelGroup>
+	</ui:define>
 
-					<h:outputLabel for="preco" value="Preço" />
-					<h:panelGroup>
-						<h:inputText id="preco" required="true"
-							requiredMessage="Preço é obrigatório"
-							value="#{produtosBean.produto.preco}">
-							<f:validateDoubleRange minimum="0.0" maximum="1000.00" />
-						</h:inputText>
-						<h:message styleClass="erro" for="preco" />
-					</h:panelGroup>
-					<h:outputLabel for="estoque" value="Quantidade em estoque">
-					</h:outputLabel>
-					<h:panelGroup>
-						<h:inputText id="estoque" value="#{produtosBean.produto.estoque}">
-							<f:validateLongRange minimum="0" maximum="1000"></f:validateLongRange>
-						</h:inputText>
-						<h:message styleClass="erro" for="estoque"></h:message>
-					</h:panelGroup>
-					<h:outputLabel for="descricao" value="Descrição" />
-					<h:inputTextarea id="descricao"
-						value="#{produtosBean.produto.descricao}" />
+	<ui:define name="formulario">
+		<h:form id="formProdutos" prependId="false"
+			enctype="multipart/form-data">
 
-					<h:outputLabel for="ativo" value="Ativo" />
-					<h:selectBooleanCheckbox id="ativo"
-						value="#{produtosBean.produto.ativo}" />
-						
-					<h:outputLabel value="Data de cadastro" />
-					<h:inputText required="true" requiredMessage="Data de cadastro obrigatória" value="#{produtosBean.produto.dataCadastro}">
-						<f:converter converterId="dateConverter" />
-					</h:inputText>
+			<h:panelGrid columns="2">
 
-					<h:outputLabel value="categoria" />
-					<h:selectOneMenu>
-						<f:selectItems value="#{produtosBean.categoriasItens}" />
-					</h:selectOneMenu>
-					
-					<h:outputLabel value="Imagem" />
-					<h:inputFile value="#{produtosBean.imagem}" />
+				<h:outputLabel for="nome" value="Nome" />
+				<h:panelGroup>
+					<p:inputText required="true" requiredMessage="Nome é obrigatário"
+						id="nome" value="#{produtosBean.produto.nome}" />
+					<p:message styleClass="erro" for="nome" />
+				</h:panelGroup>
 
-				</h:panelGrid>
+				<h:outputLabel for="preco" value="Preço" />
+				<h:panelGroup>
+					<p:inputNumber symbol="R$ " id="preco" required="true"
+						requiredMessage="Preço é obrigatório"
+						value="#{produtosBean.produto.preco}">
+						<f:validateDoubleRange minimum="0.0" maximum="1000.00" />
+					</p:inputNumber>
+					<p:message styleClass="erro" for="preco" />
+				</h:panelGroup>
+				<h:outputLabel for="estoque" value="Quantidade em estoque">
+				</h:outputLabel>
+				<h:panelGroup>
+					<p:spinner max="1000" stepFactor="1" min="0" decimalPlaces="0"
+						value="#{produtosBean.produto.estoque}" id="estoque" />
+					<p:message styleClass="erro" for="estoque" />
+				</h:panelGroup>
+				<h:outputLabel for="descricao" value="Descrição" />
+				<p:inputTextarea id="descricao"
+					value="#{produtosBean.produto.descricao}" />
 
-				<h:commandButton styleClass="btn-primary btn"
-					rendered="#{produtosBean.estado == 'cadastro'}" value="Cadastrar"
-					action="#{produtosBean.cadastrarProduto}" />
+				<h:outputLabel for="ativo" value="Ativo" />
+				<p:selectBooleanCheckbox id="ativo"
+					value="#{produtosBean.produto.ativo}" />
 
-				<h:commandButton styleClass="btn-primary btn"
-					rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
-					action="#{produtosBean.editarProduto}" />
+				<h:outputLabel value="Data de cadastro" />
+				<p:calendar required="true" pattern="dd/MM/yyyy HH:mm:ss"
+					requiredMessage="Data de cadastro obrigatória"
+					value="#{produtosBean.produto.dataCadastro}">
+					<f:converter converterId="dateConverter" />
+				</p:calendar>
 
-				<h:commandButton immediate="true" action="#{produtosBean.listar}"
-					value="Voltar" />
+				<h:outputLabel value="categoria" />
+				<p:selectOneMenu>
+					<f:selectItems value="#{produtosBean.categoriasItens}" />
+				</p:selectOneMenu>
 
-			</h:form>
-		</ui:define>
+				<h:outputLabel value="Imagem" />
+				<h:inputFile value="#{produtosBean.imagem}" />
 
-	</ui:composition>
-</body>
+			</h:panelGrid>
+
+			<p:commandButton ajax="false" update="body"
+				rendered="#{produtosBean.estado == 'cadastro'}" value="Cadastrar"
+				action="#{produtosBean.cadastrarProduto}" />
+
+			<p:commandButton ajax="false" update="body"
+				rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
+				action="#{produtosBean.editarProduto}" />
+
+			<p:commandButton immediate="true" ajax="false" action="#{produtosBean.listar}"
+				value="Voltar" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="detalhes">
+		<h3>Detalhes do produto</h3>
+		<h:form>
+
+			<h:panelGrid>
+				<h:outputText value="Nome: " />
+				<h:outputText id="nome" value="#{produtosBean.produto.nome} " />
+
+				<h:outputText value="Preço: " />
+				<h:outputText value="#{produtosBean.produto.preco} " />
+			</h:panelGrid>
+
+
+			<p:accordionPanel>
+				<p:tab title="Godfather Part I">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputText
+							value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
+                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
+                    but given to ruthless violence whenever anything stands against the good of the family." />
+					</h:panelGrid>
+				</p:tab>
+				<p:tab title="Godfather Part I">
+					<h:panelGrid columns="2" cellpadding="10">
+						<h:outputText
+							value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
+                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
+                    but given to ruthless violence whenever anything stands against the good of the family." />
+					</h:panelGrid>
+				</p:tab>
+			</p:accordionPanel>
+
+		</h:form>
+
+
+
+
+	</ui:define>
+
+
+</ui:composition>
 </html>

@@ -11,7 +11,7 @@
 	</managed-bean> -->
 	
 	<navigation-rule>
-		<from-view-id>/loja/login.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>produtos</from-outcome>
 			<to-view-id>/loja/produtos.xhtml</to-view-id>

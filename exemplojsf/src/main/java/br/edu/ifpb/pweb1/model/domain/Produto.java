@@ -21,6 +21,8 @@ public class Produto extends Entity {
 	private Boolean ativo;
 	
 	private String imagem;
+	
+	private String usuario;
 
 	public String getNome() {
 		return nome;
@@ -76,6 +78,14 @@ public class Produto extends Entity {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	
 }
