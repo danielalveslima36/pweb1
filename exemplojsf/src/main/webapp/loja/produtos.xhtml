@@ -59,39 +59,38 @@
 				</p:column>
 				<p:column>
 					<h:form id="form" prependId="false">
-							<p:toolbar>
-								<f:facet name="right">
-							<p:button includeViewParams="false" value="Detalhes"
-								outcome="produtos?id=#{produto.id}" />
-							<p:commandButton
-								value="Adicionar ao carrinho"
-								action="#{carrinhoBean.adicionarProduto}" ajax="false">
-								<f:setPropertyActionListener value="#{produto}"
-									target="#{carrinhoBean.produtoSelecionado}" />
-							</p:commandButton>
-							<p:commandButton value="Editar" update="body"
-								action="#{produtosBean.prepararEdicao}">
-								<f:setPropertyActionListener value="#{produto}"
-									target="#{produtosBean.produto}" />
-							</p:commandButton>
-							<p:commandButton value="Remover"
-								action="#{produtosBean.removerProduto}">
-								<p:confirm header="Confirmação"
-									message="Tem certeza que deseja remover?" icon="ui-icon-alert" />
-								<f:setPropertyActionListener value="#{produto}"
-									target="#{produtosBean.produto}" />
-							</p:commandButton>
-							<p:confirmDialog closeOnEscape="true" appendTo="@(body)"
-								global="true" showEffect="fade" hideEffect="fade">
-								<p:commandButton value="Sim" update="produtos body"
-									styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+						<p:toolbar>
+							<f:facet name="right">
+								<p:button includeViewParams="false" value="Detalhes"
+									outcome="produtos?id=#{produto.id}" />
+								<p:commandButton value="Adicionar ao carrinho"
+									action="#{carrinhoBean.adicionarProduto}" ajax="false">
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{carrinhoBean.produtoSelecionado}" />
 								</p:commandButton>
-								<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
-									icon="ui-icon-close" update="body" />
-							</p:confirmDialog>
+								<p:commandButton value="Editar" update="body"
+									action="#{produtosBean.prepararEdicao}">
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{produtosBean.produto}" />
+								</p:commandButton>
+								<p:commandButton value="Remover"
+									action="#{produtosBean.removerProduto}">
+									<p:confirm header="Confirmação"
+										message="Tem certeza que deseja remover?" icon="ui-icon-alert" />
+									<f:setPropertyActionListener value="#{produto}"
+										target="#{produtosBean.produto}" />
+								</p:commandButton>
+								<p:confirmDialog closeOnEscape="true" appendTo="@(body)"
+									global="true" showEffect="fade" hideEffect="fade">
+									<p:commandButton value="Sim" update="produtos body"
+										styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
+									</p:commandButton>
+									<p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+										icon="ui-icon-close" update="body" />
+								</p:confirmDialog>
 							</f:facet>
-							</p:toolbar>
-						
+						</p:toolbar>
+
 					</h:form>
 
 				</p:column>
@@ -171,8 +170,8 @@
 				rendered="#{produtosBean.estado == 'edicao'}" value="Editar"
 				action="#{produtosBean.editarProduto}" />
 
-			<p:commandButton immediate="true" ajax="false" action="#{produtosBean.listar}"
-				value="Voltar" />
+			<p:commandButton immediate="true" ajax="false"
+				action="#{produtosBean.listar}" value="Voltar" />
 
 		</h:form>
 	</ui:define>

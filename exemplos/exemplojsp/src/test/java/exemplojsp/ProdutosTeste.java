@@ -16,7 +16,7 @@ public class ProdutosTeste {
 	public void criarProduto() {
 		ProdutosDAO produtosDAO = new ProdutosDAO();
 		Produto produto = new Produto();
-		produto.setEstoque(10l);
+//		produto.setEstoque(10l);
 		produto.setNome("Fantasia");
 		produto.setPreco(50.00);
 		produto.setDescricao("Importante para o carnaval");
