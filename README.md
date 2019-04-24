@@ -12,20 +12,18 @@
 ### Horários / Local
 
 * Horários:
-  - **Terças (13:00-15:15)** - Lab.Inf.4 / Sala 03
-  - **Quintas (15:30-17:45)** - Lab.Inf.1 / Sala 03
+  - **Quartas (15:30-17:45)** - Lab. Inf. 4
+  - **Sextas (13:00-15:15)** - Lab.Inf.4
 
 ## Comunicação
 
-Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.herokuapp.com/badge.svg)](https://ifpb.herokuapp.com/) no canal `#ads-pweb1`.
+Toda a comunicação será realizada usando o [![Slack Status](https://ifpb.herokuapp.com/badge.svg)](https://ifpb.herokuapp.com/) no canal `#ads-pweb1-20191`.
 
 
-## Conteúdo e Cronograma de aulas
+## Conteúdo e Planejamento de aulas
 
-[Acessar Cronograma de Aulas](https://docs.google.com/spreadsheets/d/1Pvnzj62Z6gOwG6BwagHlMOTHit03CTE676NiHeIBYi4/edit?usp=sharing)
-
-
-[Acessar slides](slides/)
+* [Acessar Planejamento de Aulas](https://trello.com/b/lAqeAHKi/pweb1-planejamento-de-aulas)
+* [Acessar ambiente no Google Classroom](https://classroom.google.com/u/2/c/MzYyODY4NDI5OTBa)
 
 ## Avaliações
 
