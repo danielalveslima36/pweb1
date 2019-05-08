@@ -56,7 +56,7 @@ public class LivroDAOBD implements LivroDAO {
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			while(resultSet.next()) {
-				livro.of(new Livro(resultSet.getInt("id"), resultSet.getString("titulo"), resultSet.getString("isbn"), resultSet.getString("autor")));
+				livro = livro.of(new Livro(resultSet.getInt("id"), resultSet.getString("titulo"), resultSet.getString("isbn"), resultSet.getString("autor")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
