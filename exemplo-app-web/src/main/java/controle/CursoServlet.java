@@ -14,7 +14,10 @@ public class CursoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        //Parâmetro de Inicialização (Só pode ser criado via configuração na inicialização da aplicação e não pode ser alterado/removido)
         String curso = req.getServletContext().getInitParameter("curso");
+
+        //Atributo de Contexto (pode ser alterado/removido e criado em qualquer tempo durante a execução da aplicação)
         Curso cursoObj = (Curso) req.getServletContext().getAttribute("curso");
         resp.getOutputStream().println(curso);
         resp.getOutputStream().println("\n");
