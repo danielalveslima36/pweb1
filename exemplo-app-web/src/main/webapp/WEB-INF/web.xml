@@ -6,4 +6,12 @@
     <jsp-config>
     </jsp-config>
   <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>curso</param-name>
+        <param-value>ADS</param-value>
+    </context-param>
+    <context-param>
+        <param-name>disciplina</param-name>
+        <param-value>pweb1</param-value>
+    </context-param>
 </web-app>

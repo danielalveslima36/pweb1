@@ -2,8 +2,10 @@ package controle;
 
 import modelo.*;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,9 @@ import java.nio.file.StandardCopyOption;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@WebServlet(urlPatterns="/albuns")
+@WebServlet(urlPatterns="/albuns",
+		initParams = { @WebInitParam(name = "curso", value = "ADS"),
+				@WebInitParam(name="disciplina", value="pweb1")} )
 @MultipartConfig(
 		location = "/tmp",
 		maxFileSize = 1024*1024*20, //20MB
@@ -30,6 +34,9 @@ public class AlbumServlet extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+
+    	String curso = req.getServletContext().getInitParameter("curso");
+    	String disciplina = req.getServletContext().getInitParameter("disciplina");
 
     	String titulo = req.getParameter("titulo");
     	String autor = req.getParameter("autor");
