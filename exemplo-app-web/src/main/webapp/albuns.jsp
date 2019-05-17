@@ -9,6 +9,7 @@
 	<th>Título</th>
 	<th>Autor</th>
 	<th>Publicado</th>
+	<th>Arquivos</th>
 </thead>
 <tbody>
 <c:forEach items="${albuns}" var="album">
@@ -16,6 +17,13 @@
 		<td>${album.titulo}</td>
 		<td>${album.autor}</td>
 		<td>${album.publicado}</td>
+		<td>
+			<ul>
+			<c:forEach items="${album.arquivos}" var="arquivo">
+				<li>${arquivo}</li>
+			</c:forEach>
+			</ul>
+		</td>
 	</tr>
 </c:forEach>
 </tbody>

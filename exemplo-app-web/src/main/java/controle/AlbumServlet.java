@@ -3,14 +3,26 @@ package controle;
 import modelo.*;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @WebServlet(urlPatterns="/albuns")
+@MultipartConfig(
+		location = "/tmp",
+		maxFileSize = 1024*1024*20, //20MB
+		maxRequestSize = 1024*1024*30, // 30MB
+		fileSizeThreshold = 1024*1024*40 // 40MB
+)
 public class AlbumServlet extends HttpServlet {
 	
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
@@ -26,7 +38,17 @@ public class AlbumServlet extends HttpServlet {
     	Album album = new Album(titulo, autor, publicado);
 
     	//todo: fazer upload de arquivo e atribuí-lo ao album
+		try {
+			String nomeArquivo = ZonedDateTime.now().toInstant().getEpochSecond() + '-' + req.getPart("foto").getSubmittedFileName();
+			album.getArquivos().add(nomeArquivo);
+			InputStream is = req.getPart("foto").getInputStream();
 
+			Files.copy(is, Paths.get("/Users/diegopessoa/arquivos/"+nomeArquivo));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 
 		AlbumDAO albumDAO = AlbumDAOClasse.getInstance();
 		albumDAO.criarAlbum(album);

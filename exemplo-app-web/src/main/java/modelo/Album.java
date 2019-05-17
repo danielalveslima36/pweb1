@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
@@ -10,7 +11,7 @@ public class Album {
 
 	private boolean publicado;
 
-	private List<String> arquivos;
+	private List<String> arquivos = new ArrayList<>();
 
 	public Album() {
 	}
