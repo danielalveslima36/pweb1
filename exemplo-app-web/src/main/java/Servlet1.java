@@ -26,7 +26,7 @@ public class Servlet1 extends HttpServlet {
                 e.printStackTrace();
             }
         }else{
-            String texto = "Você chegou no limite de excessões";
+            String texto = "Você chegou no limite de requisições";
             req.setAttribute("texto", texto);
             try {
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
